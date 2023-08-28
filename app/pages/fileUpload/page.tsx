@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { connectDB } from '../../../util/database';
 
 // interface FileData {
 // 	lastModified: number;
@@ -37,13 +38,16 @@ const FileUpload = () => {
 
 	localStorage.setItem('img', imgBase64);
 
-	const utterance = new SpeechSynthesisUtterance('Hello world!');
-	speechSynthesis.speak(utterance);
+	const TTSHandler = async () => {
+		const utterance = new SpeechSynthesisUtterance('테스트');
+		speechSynthesis.speak(utterance);
+	};
 
 	return (
 		<>
 			파일 <input type="file" name="test" id="test" onChange={getFile} accept="image/*" />
 			이미지 <BlankImg src={imgBase64} alt="미리보기" />
+			<button onClick={TTSHandler}>TTS</button>
 		</>
 	);
 };
